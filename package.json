@@ -22,5 +22,8 @@
   "homepage": "https://github.com/opfer-10155/opfer-10155.github.io",
   "devDependencies": {
     "elm-spa": "^5.0.4"
+  },
+  "dependencies": {
+    "elm": "^0.19.1-5"
   }
 }
