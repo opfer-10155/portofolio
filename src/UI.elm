@@ -49,6 +49,7 @@ sidebar =
   , li [] [viewLink "About me" Route.Home_]
   , li [] [viewLink "Contact" Route.Contact]
   , li [] [viewLink "Sandbox" Route.Counter]
+  , li [] [viewLink "Articles" Route.Articles]
   , br [] []
   , li [] [icons]
   ]

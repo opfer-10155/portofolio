@@ -64,7 +64,7 @@ update msg model =
 
 view : Model -> View Msg
 view model =
-    { title = "Homepage"
+    { title = "Home"
     , body = UI.layout <|
         [ h4 [] [text "About me"]
         , p [] [ text mySelf ]

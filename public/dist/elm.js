@@ -10797,6 +10797,7 @@ var $elm$url$Url$Parser$parse = F2(
 					url.fragment,
 					$elm$core$Basics$identity)));
 	});
+var $author$project$Gen$Route$Articles = {$: 'Articles'};
 var $author$project$Gen$Route$Contact = {$: 'Contact'};
 var $author$project$Gen$Route$Counter = {$: 'Counter'};
 var $author$project$Gen$Route$Home_ = {$: 'Home_'};
@@ -10858,6 +10859,7 @@ var $elm$url$Url$Parser$s = function (str) {
 			}
 		});
 };
+var $author$project$Gen$Params$Articles$parser = $elm$url$Url$Parser$s('articles');
 var $author$project$Gen$Params$Contact$parser = $elm$url$Url$Parser$s('contact');
 var $author$project$Gen$Params$Counter$parser = $elm$url$Url$Parser$s('counter');
 var $elm$url$Url$Parser$top = $elm$url$Url$Parser$Parser(
@@ -10870,6 +10872,7 @@ var $author$project$Gen$Params$NotFound$parser = $elm$url$Url$Parser$s('not-foun
 var $author$project$Gen$Route$routes = _List_fromArray(
 	[
 		A2($elm$url$Url$Parser$map, $author$project$Gen$Route$Home_, $author$project$Gen$Params$Home_$parser),
+		A2($elm$url$Url$Parser$map, $author$project$Gen$Route$Articles, $author$project$Gen$Params$Articles$parser),
 		A2($elm$url$Url$Parser$map, $author$project$Gen$Route$Contact, $author$project$Gen$Params$Contact$parser),
 		A2($elm$url$Url$Parser$map, $author$project$Gen$Route$Counter, $author$project$Gen$Params$Counter$parser),
 		A2($elm$url$Url$Parser$map, $author$project$Gen$Route$NotFound, $author$project$Gen$Params$NotFound$parser)
@@ -10888,6 +10891,13 @@ var $author$project$Request$create = F3(
 			url,
 			key);
 	});
+var $author$project$Gen$Model$Articles = F2(
+	function (a, b) {
+		return {$: 'Articles', a: a, b: b};
+	});
+var $author$project$Gen$Msg$Articles = function (a) {
+	return {$: 'Articles', a: a};
+};
 var $author$project$Gen$Model$Contact = function (a) {
 	return {$: 'Contact', a: a};
 };
@@ -11081,6 +11091,10 @@ var $author$project$Gen$Route$toHref = function (route) {
 		return '/' + A2($elm$core$String$join, '/', segments);
 	};
 	switch (route.$) {
+		case 'Articles':
+			return joinAsHref(
+				_List_fromArray(
+					['articles']));
 		case 'Contact':
 			return joinAsHref(
 				_List_fromArray(
@@ -11112,8 +11126,6 @@ var $author$project$Gen$Pages$bundle = F3(
 				toUrl: $author$project$Gen$Route$toHref
 			});
 	});
-var $author$project$Pages$Counter$init = 0;
-var $author$project$Effect$none = $author$project$Effect$None;
 var $ryannhg$elm_spa$ElmSpa$Page$Page = function (a) {
 	return {$: 'Page', a: a};
 };
@@ -11188,27 +11200,26 @@ var $ryannhg$elm_spa$ElmSpa$Page$adapters = {
 			};
 		})
 };
-var $ryannhg$elm_spa$ElmSpa$Page$sandbox = F2(
-	function (none, page) {
+var $ryannhg$elm_spa$ElmSpa$Page$element = F2(
+	function (fromCmd, page) {
 		return $ryannhg$elm_spa$ElmSpa$Page$Page(
 			F2(
 				function (_v0, _v1) {
 					return $elm$core$Result$Ok(
-						A2($ryannhg$elm_spa$ElmSpa$Page$adapters.sandbox, none, page));
+						A2($ryannhg$elm_spa$ElmSpa$Page$adapters.element, fromCmd, page));
 				}));
 	});
-var $author$project$Page$sandbox = $ryannhg$elm_spa$ElmSpa$Page$sandbox($author$project$Effect$none);
-var $author$project$Pages$Counter$update = F2(
+var $author$project$Page$element = $ryannhg$elm_spa$ElmSpa$Page$element($author$project$Effect$fromCmd);
+var $author$project$Pages$Articles$init = _Utils_Tuple2(
+	{},
+	$elm$core$Platform$Cmd$none);
+var $author$project$Pages$Articles$subscriptions = function (model) {
+	return $elm$core$Platform$Sub$none;
+};
+var $author$project$Pages$Articles$update = F2(
 	function (msg, model) {
-		if (msg.$ === 'Inc') {
-			return model + 1;
-		} else {
-			return model - 1;
-		}
+		return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
 	});
-var $author$project$Pages$Counter$Dec = {$: 'Dec'};
-var $author$project$Pages$Counter$Inc = {$: 'Inc'};
-var $elm$html$Html$h3 = _VirtualDom_node('h3');
 var $elm$core$Debug$toString = _Debug_toString;
 var $author$project$Components$Material$column = function (size) {
 	return $elm$html$Html$div(
@@ -11218,15 +11229,77 @@ var $author$project$Components$Material$column = function (size) {
 				'col s' + $elm$core$Debug$toString(size))
 			]));
 };
-var $elm$html$Html$Attributes$align = $elm$html$Html$Attributes$stringProperty('align');
-var $elm$html$Html$br = _VirtualDom_node('br');
-var $elm$html$Html$img = _VirtualDom_node('img');
+var $elm$html$Html$h5 = _VirtualDom_node('h5');
+var $elm$html$Html$iframe = _VirtualDom_node('iframe');
+var $elm$html$Html$Attributes$rel = _VirtualDom_attribute('rel');
+var $author$project$Components$Material$row = $elm$html$Html$div(
+	_List_fromArray(
+		[
+			$elm$html$Html$Attributes$class('row')
+		]));
 var $elm$html$Html$Attributes$src = function (url) {
 	return A2(
 		$elm$html$Html$Attributes$stringProperty,
 		'src',
 		_VirtualDom_noJavaScriptOrHtmlUri(url));
 };
+var $elm$html$Html$Attributes$target = $elm$html$Html$Attributes$stringProperty('target');
+var $author$project$Pages$Articles$entry = F3(
+	function (title, desc, filename) {
+		return $author$project$Components$Material$row(
+			_List_fromArray(
+				[
+					A2(
+					$author$project$Components$Material$column,
+					5,
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$a,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$href('/pdf/' + (filename + '.pdf')),
+									$elm$html$Html$Attributes$target('_blank'),
+									$elm$html$Html$Attributes$rel('noopener noreferrer')
+								]),
+							_List_fromArray(
+								[
+									A2(
+									$elm$html$Html$h5,
+									_List_Nil,
+									_List_fromArray(
+										[
+											$elm$html$Html$text(title)
+										]))
+								])),
+							A2(
+							$elm$html$Html$p,
+							_List_Nil,
+							_List_fromArray(
+								[
+									$elm$html$Html$text(desc)
+								]))
+						])),
+					A2(
+					$author$project$Components$Material$column,
+					7,
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$iframe,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$src('/pdf/' + (filename + '.pdf')),
+									A2($elm$html$Html$Attributes$style, 'width', '40vw'),
+									A2($elm$html$Html$Attributes$style, 'height', '40vh')
+								]),
+							_List_Nil)
+						]))
+				]));
+	});
+var $elm$html$Html$Attributes$align = $elm$html$Html$Attributes$stringProperty('align');
+var $elm$html$Html$br = _VirtualDom_node('br');
+var $elm$html$Html$img = _VirtualDom_node('img');
 var $author$project$UI$face = A2(
 	$elm$html$Html$div,
 	_List_fromArray(
@@ -11248,11 +11321,6 @@ var $author$project$UI$face = A2(
 		]));
 var $author$project$Styles$Attr$flowText = $elm$html$Html$Attributes$class('flow-text');
 var $elm$html$Html$i = _VirtualDom_node('i');
-var $author$project$Components$Material$row = $elm$html$Html$div(
-	_List_fromArray(
-		[
-			$elm$html$Html$Attributes$class('row')
-		]));
 var $author$project$UI$icons = $author$project$Components$Material$row(
 	_List_fromArray(
 		[
@@ -11398,6 +11466,13 @@ var $author$project$UI$sidebar = A2(
 				[
 					A2($author$project$UI$viewLink, 'Sandbox', $author$project$Gen$Route$Counter)
 				])),
+			A2(
+			$elm$html$Html$li,
+			_List_Nil,
+			_List_fromArray(
+				[
+					A2($author$project$UI$viewLink, 'Articles', $author$project$Gen$Route$Articles)
+				])),
 			A2($elm$html$Html$br, _List_Nil, _List_Nil),
 			A2(
 			$elm$html$Html$li,
@@ -11425,6 +11500,50 @@ var $author$project$UI$layout = function (children) {
 				]))
 		]);
 };
+var $author$project$Pages$Articles$view = function (model) {
+	return {
+		body: $author$project$UI$layout(
+			_List_fromArray(
+				[
+					A3($author$project$Pages$Articles$entry, 'WITS2022での研究発表', '\n                WITSという型システムの実装に関するワークショップでの発表です。\n                今後の研究についてのアドバイスをたくさんいただきました。\n                初めての海外ワークショップで、この分野のプロフェッショナルに聞いていただくので、\n                大変緊張しました。\n                ', 'WITS2022'),
+					A3($author$project$Pages$Articles$entry, 'JSSST2021でのポスター発表', '\n                B4時代のJSSST2021ポスター発表です。\n                初めての対外発表で、大変貴重な経験でした。\n                ', 'JSSST'),
+					A3($author$project$Pages$Articles$entry, 'Tagless Final入門', '\n                M1時代の研究室セミナー発表です。\n                Tagless Finalという型安全なDSLの構築アプローチの紹介です。\n                ', 'Tagless'),
+					A3($author$project$Pages$Articles$entry, 'Quantitative Types入門', '\n                B4時代の研究室セミナー発表です。\n                Quantitative Typesの機能とその型システムを持つIdris2のチュートリアルです。\n                できるかぎり理論の話に偏らないようにして、シンプルな例と説明で利点を理解させっることができるように努めました。\n                ', 'QTT'),
+					A3($author$project$Pages$Articles$entry, '卒論発表', '\n                B4時代の卒業論文発表に使ったスライドです。\n                実力不足により、聴衆に理解させられなかったので無念でした。\n                ', 'BThesis'),
+					A3($author$project$Pages$Articles$entry, '依存型によるIntrinsically-typed Interpreter', '\n                B4時代の研究室セミナー発表です。研究テーマであるIntrinsically-typed Interpreter\n                について解説しました。このときは代数的エフェクトを持つ言語についての実装を考えていました。\n                ', 'Intri'),
+					A3($author$project$Pages$Articles$entry, 'Bidirectional Programming 入門', '\n                B4時代の初めての研究室セミナー発表です。\n                Bidirectional Programmingの概念の解説と、\n                HaskellでBidirectional Programmingするためのライブラリ「BiGUL」を紹介しました。\n                当時はスライド制作に慣れていなかったので、だいぶ下手に見えるかもしれません。\n                ', 'IntroBiGUL')
+				])),
+		title: 'Publications'
+	};
+};
+var $author$project$Pages$Articles$page = F2(
+	function (_v0, _v1) {
+		return $author$project$Page$element(
+			{init: $author$project$Pages$Articles$init, subscriptions: $author$project$Pages$Articles$subscriptions, update: $author$project$Pages$Articles$update, view: $author$project$Pages$Articles$view});
+	});
+var $author$project$Pages$Counter$init = 0;
+var $author$project$Effect$none = $author$project$Effect$None;
+var $ryannhg$elm_spa$ElmSpa$Page$sandbox = F2(
+	function (none, page) {
+		return $ryannhg$elm_spa$ElmSpa$Page$Page(
+			F2(
+				function (_v0, _v1) {
+					return $elm$core$Result$Ok(
+						A2($ryannhg$elm_spa$ElmSpa$Page$adapters.sandbox, none, page));
+				}));
+	});
+var $author$project$Page$sandbox = $ryannhg$elm_spa$ElmSpa$Page$sandbox($author$project$Effect$none);
+var $author$project$Pages$Counter$update = F2(
+	function (msg, model) {
+		if (msg.$ === 'Inc') {
+			return model + 1;
+		} else {
+			return model - 1;
+		}
+	});
+var $author$project$Pages$Counter$Dec = {$: 'Dec'};
+var $author$project$Pages$Counter$Inc = {$: 'Inc'};
+var $elm$html$Html$h3 = _VirtualDom_node('h3');
 var $author$project$Pages$Counter$view = function (model) {
 	return {
 		body: $author$project$UI$layout(
@@ -11584,7 +11703,6 @@ var $author$project$Pages$Home_$education = A2(
 				]))
 		]));
 var $elm$html$Html$h4 = _VirtualDom_node('h4');
-var $elm$html$Html$h5 = _VirtualDom_node('h5');
 var $author$project$Pages$Home_$jobExperiences = A2(
 	$elm$html$Html$table,
 	_List_Nil,
@@ -11716,7 +11834,7 @@ var $author$project$Pages$Home_$view = function (model) {
 							$elm$html$Html$text($author$project$Pages$Home_$comment)
 						]))
 				])),
-		title: 'Homepage'
+		title: 'Home'
 	};
 };
 var $author$project$Pages$Home_$page = F2(
@@ -11772,6 +11890,7 @@ var $author$project$Pages$Contact$view = {
 };
 var $author$project$Pages$NotFound$view = $author$project$View$placeholder('Page not found.');
 var $author$project$Gen$Pages$pages = {
+	articles: A3($author$project$Gen$Pages$bundle, $author$project$Pages$Articles$page, $author$project$Gen$Model$Articles, $author$project$Gen$Msg$Articles),
 	contact: A2($author$project$Gen$Pages$static, $author$project$Pages$Contact$view, $author$project$Gen$Model$Contact),
 	counter: A3($author$project$Gen$Pages$bundle, $author$project$Pages$Counter$page, $author$project$Gen$Model$Counter, $author$project$Gen$Msg$Counter),
 	home_: A3($author$project$Gen$Pages$bundle, $author$project$Pages$Home_$page, $author$project$Gen$Model$Home_, $author$project$Gen$Msg$Home_),
@@ -11779,6 +11898,8 @@ var $author$project$Gen$Pages$pages = {
 };
 var $author$project$Gen$Pages$init = function (route) {
 	switch (route.$) {
+		case 'Articles':
+			return $author$project$Gen$Pages$pages.articles.init(_Utils_Tuple0);
 		case 'Contact':
 			return $author$project$Gen$Pages$pages.contact.init(_Utils_Tuple0);
 		case 'Counter':
@@ -11856,6 +11977,10 @@ var $author$project$Gen$Pages$subscriptions = function (model_) {
 				function (_v1, _v2, _v3) {
 					return $elm$core$Platform$Sub$none;
 				});
+		case 'Articles':
+			var params = model_.a;
+			var model = model_.b;
+			return A2($author$project$Gen$Pages$pages.articles.subscriptions, params, model);
 		case 'Contact':
 			var params = model_.a;
 			return A2($author$project$Gen$Pages$pages.contact.subscriptions, params, _Utils_Tuple0);
@@ -11942,32 +12067,43 @@ var $elm$url$Url$toString = function (url) {
 var $author$project$Gen$Pages$update = F2(
 	function (msg_, model_) {
 		var _v0 = _Utils_Tuple2(msg_, model_);
-		_v0$2:
+		_v0$3:
 		while (true) {
-			if (_v0.a.$ === 'Counter') {
-				if (_v0.b.$ === 'Counter') {
-					var msg = _v0.a.a;
-					var _v1 = _v0.b;
-					var params = _v1.a;
-					var model = _v1.b;
-					return A3($author$project$Gen$Pages$pages.counter.update, params, msg, model);
-				} else {
-					break _v0$2;
-				}
-			} else {
-				if (_v0.b.$ === 'Home_') {
-					var msg = _v0.a.a;
-					var _v2 = _v0.b;
-					var params = _v2.a;
-					var model = _v2.b;
-					return A3($author$project$Gen$Pages$pages.home_.update, params, msg, model);
-				} else {
-					break _v0$2;
-				}
+			switch (_v0.a.$) {
+				case 'Articles':
+					if (_v0.b.$ === 'Articles') {
+						var msg = _v0.a.a;
+						var _v1 = _v0.b;
+						var params = _v1.a;
+						var model = _v1.b;
+						return A3($author$project$Gen$Pages$pages.articles.update, params, msg, model);
+					} else {
+						break _v0$3;
+					}
+				case 'Counter':
+					if (_v0.b.$ === 'Counter') {
+						var msg = _v0.a.a;
+						var _v2 = _v0.b;
+						var params = _v2.a;
+						var model = _v2.b;
+						return A3($author$project$Gen$Pages$pages.counter.update, params, msg, model);
+					} else {
+						break _v0$3;
+					}
+				default:
+					if (_v0.b.$ === 'Home_') {
+						var msg = _v0.a.a;
+						var _v3 = _v0.b;
+						var params = _v3.a;
+						var model = _v3.b;
+						return A3($author$project$Gen$Pages$pages.home_.update, params, msg, model);
+					} else {
+						break _v0$3;
+					}
 			}
 		}
 		return F3(
-			function (_v3, _v4, _v5) {
+			function (_v4, _v5, _v6) {
 				return _Utils_Tuple2(model_, $author$project$Effect$none);
 			});
 	});
@@ -12078,6 +12214,10 @@ var $author$project$Gen$Pages$view = function (model_) {
 				function (_v1, _v2, _v3) {
 					return $author$project$View$none;
 				});
+		case 'Articles':
+			var params = model_.a;
+			var model = model_.b;
+			return A2($author$project$Gen$Pages$pages.articles.view, params, model);
 		case 'Contact':
 			var params = model_.a;
 			return A2($author$project$Gen$Pages$pages.contact.view, params, _Utils_Tuple0);
@@ -12103,4 +12243,4 @@ var $author$project$Main$view = function (model) {
 };
 var $author$project$Main$main = $elm$browser$Browser$application(
 	{init: $author$project$Main$init, onUrlChange: $author$project$Main$ChangedUrl, onUrlRequest: $author$project$Main$ClickedLink, subscriptions: $author$project$Main$subscriptions, update: $author$project$Main$update, view: $author$project$Main$view});
-_Platform_export({'Main':{'init':$author$project$Main$main($elm$json$Json$Decode$value)({"versions":{"elm":"0.19.1"},"types":{"message":"Main.Msg","aliases":{"Gen.Pages.Msg":{"args":[],"type":"Gen.Msg.Msg"},"Url.Url":{"args":[],"type":"{ protocol : Url.Protocol, host : String.String, port_ : Maybe.Maybe Basics.Int, path : String.String, query : Maybe.Maybe String.String, fragment : Maybe.Maybe String.String }"}},"unions":{"Main.Msg":{"args":[],"tags":{"ChangedUrl":["Url.Url"],"ClickedLink":["Browser.UrlRequest"],"Shared":["Shared.Msg"],"Page":["Gen.Pages.Msg"]}},"Basics.Int":{"args":[],"tags":{"Int":[]}},"Maybe.Maybe":{"args":["a"],"tags":{"Just":["a"],"Nothing":[]}},"Gen.Msg.Msg":{"args":[],"tags":{"Counter":["Pages.Counter.Msg"],"Home_":["Pages.Home_.Msg"]}},"Shared.Msg":{"args":[],"tags":{"NoOp":[]}},"Url.Protocol":{"args":[],"tags":{"Http":[],"Https":[]}},"String.String":{"args":[],"tags":{"String":[]}},"Browser.UrlRequest":{"args":[],"tags":{"Internal":["Url.Url"],"External":["String.String"]}},"Pages.Counter.Msg":{"args":[],"tags":{"Inc":[],"Dec":[]}},"Pages.Home_.Msg":{"args":[],"tags":{"ReplaceMe":[]}}}}})}});}(this));
+_Platform_export({'Main':{'init':$author$project$Main$main($elm$json$Json$Decode$value)({"versions":{"elm":"0.19.1"},"types":{"message":"Main.Msg","aliases":{"Gen.Pages.Msg":{"args":[],"type":"Gen.Msg.Msg"},"Url.Url":{"args":[],"type":"{ protocol : Url.Protocol, host : String.String, port_ : Maybe.Maybe Basics.Int, path : String.String, query : Maybe.Maybe String.String, fragment : Maybe.Maybe String.String }"}},"unions":{"Main.Msg":{"args":[],"tags":{"ChangedUrl":["Url.Url"],"ClickedLink":["Browser.UrlRequest"],"Shared":["Shared.Msg"],"Page":["Gen.Pages.Msg"]}},"Basics.Int":{"args":[],"tags":{"Int":[]}},"Maybe.Maybe":{"args":["a"],"tags":{"Just":["a"],"Nothing":[]}},"Gen.Msg.Msg":{"args":[],"tags":{"Articles":["Pages.Articles.Msg"],"Counter":["Pages.Counter.Msg"],"Home_":["Pages.Home_.Msg"]}},"Shared.Msg":{"args":[],"tags":{"NoOp":[]}},"Url.Protocol":{"args":[],"tags":{"Http":[],"Https":[]}},"String.String":{"args":[],"tags":{"String":[]}},"Browser.UrlRequest":{"args":[],"tags":{"Internal":["Url.Url"],"External":["String.String"]}},"Pages.Articles.Msg":{"args":[],"tags":{"ReplaceMe":[]}},"Pages.Counter.Msg":{"args":[],"tags":{"Inc":[],"Dec":[]}},"Pages.Home_.Msg":{"args":[],"tags":{"ReplaceMe":[]}}}}})}});}(this));
